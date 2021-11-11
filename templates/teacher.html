@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block app %} 
+
+<div class="container ">
+    
+    <div class="row">
+        <div class="col-md-12">
+            {% include 'partials/alerts.html' %}
+        </div>
+
+        <section class="col-md-12">
+
+            
+
+            
+
+        <br>
+        <div class="row">
+            <div class="col-xs-12 col-12 text-center">
+                {% if profile_picture and picture_exists %}
+                <img typeof="foaf:Image" class="img-responsive" src="/media/photos/{{profile_picture}}" width="125" height="140" alt="">
+                {% else  %}
+                <img typeof="foaf:Image" class="img-responsive" src="/media/placeholder.png" width="125" height="140" alt="">
+                {% endif %}            </div>
+            <div class="col-xs-12 col-12">
+                <!-- <legend class="pl-1">Teacher: </legend>  -->
+                <div class="table-responsive m-t-40" style="clear: both;">
+                    <table class="table table-sm table-hover ">
+                        <tbody>
+                            {% for detail in teacher.items %}
+                                <tr>
+                                    <td class="text-right font-weight-light-bold">{{detail.0}}</td>
+                                    <td class="border-left"> {% if detail.1 %} {{detail.1|safe}} {% else %} - {% endif %} </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+         
+        <br>
+
+
+            
+        </section>
+
+        <!-- /#uw-sidebar -->
+
+    </div>
+
+</div>
+
+
+{% endblock %} 
+
+{% block app_js %}
+<script>
+    $( "[name=term]" ).autocomplete({
+      source: "{% url 'search' %}",
+      minLength: 1,
+      focus: function( event, ui ) {
+        $( "[name=term]" ).val(ui.item.subject_name);
+        return false;
+      },
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<div>" + item.subject_name +    "</div>" )
+        .appendTo( ul );
+    };
+
+    var maxPage = parseInt($('.current').text().split(" of ")[1].split(".")[0]);
+    var curPage = $("#main_content ul").length
+
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            var url = window.location.search;
+            
+            if (url == "") url='?';
+            else url += '&'
+            
+            
+            if (curPage < maxPage)
+                $.ajax({
+                    type: "POST",
+
+                    url: "{% url 'home' %}"+url+"page="+(++curPage),
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+
+                    },
+                    success: function(data){
+                        // console.log(data);
+                        $("#main_content").append(data);
+                    },
+                    // dataType: dataType
+                });
+        }
+    });
+</script>
+{% endblock %} 
+

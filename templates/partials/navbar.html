@@ -1,0 +1,16 @@
+<nav class="navbar navbar-light bg-light shadow-sm">
+    <a class="navbar-brand" href="{% url 'home' %}">Teachers Directory
+    </a>
+    {% if request.user.is_active %}
+        <a class="navbar-brand ml-auto border-info pr-3 border-right" href="{% url 'import' %}">Import
+        </a>  
+        <a class="navbar-brand" href="{% url 'logout' %}">Logout
+        </a>
+    {% else %}
+        <a class="navbar-brand" href="{% url 'login' %}">Login
+        </a>
+    {% endif %}
+
+
+
+  </nav>

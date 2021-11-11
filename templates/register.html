@@ -1,0 +1,77 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Log In  </title>
+  
+    {% include 'partials/styles.html' %}
+    <style>
+        .login-page, .register-page {
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background-color: #e9ecef;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            height: 100vh;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        .login-box, .register-box {
+            width: 360px;
+        }
+    </style>
+  </head>
+  <body class="login-page" style="min-height: 466px;">
+  <div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+  
+      <div class="card-body">
+        <p class="login-box-msg">Register </p>
+  
+        <form action="{% url 'register' %}" method="post">
+          <div class="input-group mb-3">
+            <input type="email" name="email" class="form-control"  required placeholder="Email" value="{{values.email}}">
+        
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" name="password" class="form-control" required placeholder="New Password">
+            {% csrf_token  %}
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" name="repassword" class="form-control" required placeholder="Re Enter New Password">
+          </div>
+          <div class="row">
+            <div class="col-12">
+              {% include 'partials/alerts.html' %}
+            </div>
+            
+            <!-- /.col -->
+            <div class="col-12 pt-2">
+              <button  type="submit" class="btn btn-outline-primary w-100">Register</button>
+            </div>
+          </div>
+          <div class="row">
+            <!-- /.col -->
+          </div>
+        </form>
+  
+    
+      
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.login-box -->
+  
+  <!-- jQuery -->
+{% include 'partials/scripts.html' %}
+  
+  
+  </body></html>

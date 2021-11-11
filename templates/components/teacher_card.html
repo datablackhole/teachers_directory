@@ -1,0 +1,31 @@
+<ul id="views-bootstrap-list-group-1" class="list-group views-bootstrap-list-group-plugin-style">
+
+{% for teacher in teachers %}
+
+    <li class="list-group-item">
+        <div class="views-field views-field-field-profile-image">
+            <div class="float-right">
+                <a href="{% url 'teacher' teacher.id %}">
+                    {% if teacher.profile_picture and teacher.picture_exists %}
+                    <img typeof="foaf:Image" class="img-responsive" src="/media/photos/{{teacher.profile_picture}}" width="125" height="140" alt="">
+                    {% else  %}
+                    <img typeof="foaf:Image" class="img-responsive" src="/media/placeholder.png" width="125" height="140" alt="">
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        <div class="views-field views-field-user"> <span class="field-content"><b>Teacher Name: </b> <a href="{% url 'teacher' teacher.id %}">{{teacher.first_name}} {{teacher.last_name}} </a></span> </div>
+        <div class="views-field views-field-field-appointment">
+            <div class="field-content"><b>Subjects: </b> {{teacher.subjects_taught}}</div>
+        </div>
+        <div class="views-field views-field-field-user-email">
+            <p class="field-content"><b>Email:</b><a href="mailto:{{teacher.email_address}}"> {{teacher.email_address}}</a></p>
+        </div>
+        <div class="views-field views-field-field-phone">
+            <p class="field-content"><b>Phone:</b><a href="tel:{{teacher.phone_number}}"> {{teacher.phone_number}}</a></p>
+        </div>
+
+    </li>
+
+{% endfor %}
+</ul>

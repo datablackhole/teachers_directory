@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block app %} 
+
+<div class="container ">
+    
+    <div class="row">
+        <div class="col-md-12">
+            {% include 'partials/alerts.html' %}
+        </div>
+
+        <section class="col-md-12">
+
+            
+
+            
+
+        <br>
+        
+        <div class="col-12">
+            <form action="#" method="get" id="searchForm" class="input-group">
+                <input type="text" class="form-control" name="term" placeholder="Search term..." value="{{values.term}}">
+
+                <div class="input-group-btn search-panel">&nbsp; By
+                    <select name="filter" id="filter" class="btn btn-default dropdown-toggle shadow-sm" data-toggle="dropdown">
+                        <option value="ln"  {% if 'ln' == values.filter %}
+                        selected
+                      {% endif %}>Last Name</option>
+                        <option value="subject"  {% if 'subject' == values.filter %}
+                        selected
+                      {% endif %}>Subject</option>
+                    </select>
+                </div>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                       <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </form><!-- end form -->     
+        </div><!-- end col-xs-8 -->       
+        <br>
+
+
+            <div id="main_content" >
+                  {{teachers_html|safe}}
+            </div>
+            <div id="secondary_content" class="uw-body-copy d-none">
+
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- /#uw-sidebar -->
+
+    </div>
+
+</div>
+
+
+{% endblock %} 
+
+{% block app_js %}
+<script>
+    $( "[name=term]" ).autocomplete({
+      source: "{% url 'search' %}",
+      minLength: 1,
+      focus: function( event, ui ) {
+        $( "[name=term]" ).val(ui.item.subject_name);
+        return false;
+      },
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<div>" + item.subject_name +    "</div>" )
+        .appendTo( ul );
+    };
+
+    var maxPage = parseInt($('.current').text().split(" of ")[1].split(".")[0]);
+    var curPage = $("#main_content ul").length
+
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            // alert();
+            var url = window.location.search;
+            
+            if (url == "") url='?';
+            else url += '&'
+            
+            
+            if (curPage < maxPage)
+                $.ajax({
+                    type: "POST",
+
+                    url: "{% url 'home' %}"+url+"page="+(++curPage),
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+
+                    },
+                    success: function(data){
+                        // console.log(data);
+                        $("#main_content").append(data);
+                    },
+                    // dataType: dataType
+                });
+        }
+    });
+</script>
+{% endblock %} 
+
