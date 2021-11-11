@@ -8,11 +8,9 @@ Requirements:
 
 -> Git
 
-===================================================================
 
 ## Instructions to run the applicaion locally:
 
-===================================================================
 
 Run the following commands in 
 
@@ -35,11 +33,9 @@ python manage.py collectstatic
 
 python manage.py runserver 8000
 ```
-===================================================================
 
 ## Instructions to use:
 
-===================================================================
 
 -> Use the link http://localhost:8000/ to access the page
 
