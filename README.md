@@ -12,7 +12,7 @@
 ## Instructions to run the application locally:
 
 
-##### Assuming you have the above depencies properly installed. Run the following commands in a Terminal/Shell.
+##### Assuming you have the above dependencies properly installed. Run the following commands in a Terminal/Shell.
 
 ```shell script
 git clone https://github.com/datablackhole/teachers_directory.git
