@@ -6,15 +6,16 @@ Requirements:
 
 -> Pipenv
 
+-> Git
 
 
-
-
-Instruction to run in development:
+Instructions to run the applicaion locally:
 
 git clone https://github.com/datablackhole/teachers_directory.git
 
 cd teachers_directory
+
+pip install pipenv
 
 pipenv shell
 
@@ -26,5 +27,7 @@ python manage.py migrate
 
 python manage.py collectstatic
 
-python manage.py runserver 8001
+python manage.py runserver 8000
+
+-> Use the link http://localhost:8000/ to access the page
 
