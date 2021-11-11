@@ -9,8 +9,9 @@
           <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Import Teachers</h5>
-                <h6>Please upload csv containing image files.</h6>
-                <a href="/media/Teachers.csv" target="__blank">Click here </a> to download the sample csv template    
+                <h6>Please upload csv containing teachers data.</h6>
+                <a href="/media/Teachers.csv" target="__blank">Click here </a> to download the sample csv upload template  
+                <hr>  
                 <form action="" method="POST"  enctype="multipart/form-data">
                     
                     <input type="file"  name="csv" required>
@@ -26,7 +27,8 @@
             <div class="card-body">
                 <h5 class="card-title">Upload Profile Images</h5>
                 <h6>Please upload zip containing image files (jpg,jpeg,png only )</h6>
-                <a href="/media/teachers.zip" target="__blank">Click here </a> to download the sample csv template    
+                <a href="/media/teachers.zip" target="__blank">Click here </a> to download the sample zip upload template    
+                <hr>
                 <form action="" method="POST"  enctype="multipart/form-data">
                     
                     <input type="file"  name="zip" required>
@@ -38,7 +40,7 @@
           </div>
         </div>
       </div>
-
+      <hr>
     <div class="row">
         <div class="col-md-12">
             {% include 'partials/alerts.html' %}
