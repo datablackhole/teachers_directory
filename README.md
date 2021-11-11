@@ -11,6 +11,8 @@ Requirements:
 
 Instructions to run the applicaion locally:
 
+===================================================================
+
 git clone https://github.com/datablackhole/teachers_directory.git
 
 cd teachers_directory
@@ -29,5 +31,11 @@ python manage.py collectstatic
 
 python manage.py runserver 8000
 
+
+Instructions to use:
+
+===================================================================
+
 -> Use the link http://localhost:8000/ to access the page
 
+-> In order to use the import page you need to register with a valid email address.
