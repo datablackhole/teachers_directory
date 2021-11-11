@@ -12,11 +12,11 @@ Requirements:
 ## Instructions to run the applicaion locally:
 
 
-Run the following commands in 
-
-git clone https://github.com/datablackhole/teachers_directory.git
+##### Assuming you have the above depencies properly installed. Run the following commands in a Terminal/Shell.
 
 ```shell script
+git clone https://github.com/datablackhole/teachers_directory.git
+
 cd teachers_directory
 
 pip install pipenv
