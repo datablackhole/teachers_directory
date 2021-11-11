@@ -1,4 +1,4 @@
-# teachers_directory
+# Teachers Directory
 
 Requirements:
 
@@ -8,13 +8,17 @@ Requirements:
 
 -> Git
 
+===================================================================
 
-Instructions to run the applicaion locally:
+## Instructions to run the applicaion locally:
 
 ===================================================================
 
+Run the following commands in 
+
 git clone https://github.com/datablackhole/teachers_directory.git
 
+```shell script
 cd teachers_directory
 
 pip install pipenv
@@ -30,9 +34,10 @@ python manage.py migrate
 python manage.py collectstatic
 
 python manage.py runserver 8000
+```
+===================================================================
 
-
-Instructions to use:
+## Instructions to use:
 
 ===================================================================
 
