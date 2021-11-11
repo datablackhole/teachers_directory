@@ -77,18 +77,18 @@
 
 {% block app_js %}
 <script>
-    $( "[name=term]" ).autocomplete({
-      source: "{% url 'search' %}",
-      minLength: 1,
-      focus: function( event, ui ) {
-        $( "[name=term]" ).val(ui.item.subject_name);
-        return false;
-      },
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-      return $( "<li>" )
-        .append( "<div>" + item.subject_name +    "</div>" )
-        .appendTo( ul );
-    };
+    // $( "[name=term]" ).autocomplete({
+    //   source: "{% url 'search' %}",
+    //   minLength: 1,
+    //   focus: function( event, ui ) {
+    //     $( "[name=term]" ).val(ui.item.subject_name);
+    //     return false;
+    //   },
+    // }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+    //   return $( "<li>" )
+    //     .append( "<div>" + item.subject_name +    "</div>" )
+    //     .appendTo( ul );
+    // };
 
     var maxPage = parseInt($('.current').text().split(" of ")[1].split(".")[0]);
     var curPage = $("#main_content ul").length

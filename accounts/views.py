@@ -49,7 +49,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You are now logged out')
-    return redirect('login')
+    return redirect('home')
 
 
 def search(request):
@@ -77,7 +77,7 @@ def home(request):
             query_filter['subjects_taught__icontains'] = term
         queryset_list = queryset_list.filter(**query_filter)
 
-    paginator = Paginator(queryset_list, 2)  # Show 5 contacts per page.
+    paginator = Paginator(queryset_list, 10)  # Show 5 contacts per page.
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
 

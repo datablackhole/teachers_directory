@@ -27,7 +27,7 @@ SECRET_KEY = '3vafu)#&4)f1**6cx@%i-!wjo*79c7b!2hr!%vl4tw-&x-s@t-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = 'login'
 
@@ -133,16 +133,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
+
+from cryptography.fernet import Fernet
+KEY = 'l1DeOcy93gAVx2ZfuYjtD9urBa54G3xjZzuxrT3vOl0='
+CIPHER_SUITE = Fernet(str.encode(KEY))
+
+EMAIL_KEY = 'gAAAAABhjNemT0xB4J2bWxWn2R-GzklA8H2LAG1qWatPOkvYHuAa7SYIdoq0GJBTDBfvW6IcnOtPqedlXULSfvfkaJ10ptrBCZWZk3jkv9n0WXDGFjqTPCs='.encode()
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # EMAIL_PORT = 25
 # EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'wearenotreplying@gmail.com'
-EMAIL_HOST_PASSWORD = 'WeAreNotReplying@123'
+EMAIL_HOST_PASSWORD = CIPHER_SUITE.decrypt(EMAIL_KEY).decode()
 DEFAULT_FROM_EMAIL = 'wearenotreplying@gmail.com' 
-
-
-from cryptography.fernet import Fernet
-KEY = 'l1DeOcy93gAVx2ZfuYjtD9urBa54G3xjZzuxrT3vOl0='
-CIPHER_SUITE = Fernet(str.encode(KEY))
