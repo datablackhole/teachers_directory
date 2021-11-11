@@ -17,6 +17,7 @@ MIN_PASSWORD_LENGTH = 6
 
 # Create your views here.
 def login(request):
+    redirect_page = request.GET.get('next', '')
     if request.user.is_authenticated:
         return redirect('home')
 
@@ -27,7 +28,6 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'You are now logged in')
-            redirect_page = request.GET.get('next', '')
             if redirect_page != '':
                 return redirect(redirect_page)
 
@@ -35,6 +35,13 @@ def login(request):
         else:
             messages.error(request, 'Incorrect Username or Password')
             return redirect('login')
+
+
+    if 'import' in redirect_page:
+        messages.info(request, ': Please Log In or Register to access importer!')
+
+
+
 
     return render(request, 'login.html', {})
 

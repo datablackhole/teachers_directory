@@ -1,5 +1,5 @@
+{% if teachers %}
 <ul id="views-bootstrap-list-group-1" class="list-group views-bootstrap-list-group-plugin-style">
-
 {% for teacher in teachers %}
 
     <li class="list-group-item">
@@ -29,3 +29,9 @@
 
 {% endfor %}
 </ul>
+
+{% else %}
+
+<!-- <h6 class="text-center"> </h6> -->
+
+{% endif %}

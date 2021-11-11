@@ -7,6 +7,8 @@
         <a class="navbar-brand" href="{% url 'logout' %}">Logout
         </a>
     {% else %}
+        <a class="navbar-brand ml-auto border-info pr-3 border-right" href="{% url 'import' %}">Import
+        </a>  
         <a class="navbar-brand" href="{% url 'login' %}">Login
         </a>
     {% endif %}

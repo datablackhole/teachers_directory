@@ -39,4 +39,4 @@ python manage.py runserver 8000
 
 -> Use the link http://localhost:8000/ to access the page
 
--> In order to use the import page you'll need to register with a valid email address.
+-> In order to use the import page you will need to register with a valid email address.
