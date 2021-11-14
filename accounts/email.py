@@ -13,11 +13,7 @@ class EmailThread(threading.Thread):
     def run(self):
         plain_message = strip_tags(self.content)
         send_mail(self.subject, plain_message , self.sender, self.recipient_list, html_message=self.content,fail_silently=True,)
-        # send_mail('Test CRM',
-        #           'New lead assigned:-',
-        #           'helpdeskadmin@alyousuf.com',
-        #           ['fshaik@alyousuf.com'],
-        #           fail_silently=False,)
+        
 
 class EmailMultiAlternativesThread(threading.Thread):
     def __init__(self, subject, content, from_email, to, cc):
@@ -35,11 +31,7 @@ class EmailMultiAlternativesThread(threading.Thread):
             mail.attach_alternative(self.content, 'text/html')
         mail.send()
 
-        # send_mail('Test CRM',
-        #           'New lead assigned:-',
-        #           'helpdeskadmin@alyousuf.com',
-        #           ['fshaik@alyousuf.com'],
-        #           fail_silently=False,)
+        
 
 class EmailMultiAlternativesWithAttachmentsThread(threading.Thread):
     def __init__(self, subject, content, from_email, to, cc,attachments):
@@ -61,11 +53,7 @@ class EmailMultiAlternativesWithAttachmentsThread(threading.Thread):
                 mail.attach(_file_['file_name'], _file_['content'], _file_['mime_type'])
         mail.send()
 
-        # send_mail('Test CRM',
-        #           'New lead assigned:-',
-        #           'helpdeskadmin@alyousuf.com',
-        #           ['fshaik@alyousuf.com'],
-        #           fail_silently=False,)
+        
 
 
 def send_async_mail_cc(subject, content, sender,to,cc):
